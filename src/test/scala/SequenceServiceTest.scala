@@ -25,7 +25,7 @@ class SequenceServiceTest extends  FlatSpec with BeforeAndAfter with MockFactory
     val result = seq.indexOfCharInSequence(char, stringSequence)
     result shouldEqual 1
   }
-  it should "return an index of -1 when char 'A' in a string sequence 'BACBAD'" in {
+  it should "return an index of -1 when char 'Q' in a string sequence 'BACBAD'" in {
     val char = "Q"
     val stringSequence = "BACBAD"
     val result = seq.indexOfCharInSequence(char, stringSequence)
@@ -67,6 +67,63 @@ class SequenceServiceTest extends  FlatSpec with BeforeAndAfter with MockFactory
     val s2 = "BACBAD"
     val expected = "ABAD"
     val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
+    result shouldBe expected
+  }
+  it should "return a 'AB' for s1 = 'AGGTAB', s2 = 'GXTXAYB'" in {
+    val s1 = "AGGTAB"
+    val s2 = "GXTXAYB"
+    val expected = "AB"
+    val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
+    result shouldBe expected
+  }
+  it should "return a 'GTAB' for s1 = 'GGTAB', s2 = 'GXTXAYB'" in {
+    val s1 = "GGTAB"
+    val s2 = "GXTXAYB"
+    val expected = "GTAB"
+    val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
+    result shouldBe expected
+  }
+  it should "return a 'GTAB' for s1 = 'GTAB', s2 = 'GXTXAYB'" in {
+    val s1 = "GTAB"
+    val s2 = "GXTXAYB"
+    val expected = "GTAB"
+    val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
+    result shouldBe expected
+  }
+  it should "return a 'TAB' for s1 = 'TAB', s2 = 'GXTXAYB'" in {
+    val s1 = "TAB"
+    val s2 = "GXTXAYB"
+    val expected = "TAB"
+    val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
+    result shouldBe expected
+  }
+  it should "return a 'AB' for s1 = 'AB', s2 = 'GXTXAYB'" in {
+    val s1 = "AB"
+    val s2 = "GXTXAYB"
+    val expected = "AB"
+    val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
+    result shouldBe expected
+  }
+  it should "return a 'B' for s1 = 'B', s2 = 'GXTXAYB'" in {
+    val s1 = "B"
+    val s2 = "GXTXAYB"
+    val expected = "B"
+    val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
+    result shouldBe expected
+  }
+
+  "commonStringSequenceForAllSubsets" should "return a 'ABAD' for s1 = 'ABAZDC', s2 = 'BACBAD'" in {
+    val s1 = "ABAZDC"
+    val s2 = "BACBAD"
+    val expected = "ABAD"
+    val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
+    result shouldBe expected
+  }
+  it should "return a 'GTAB' for s1 = 'AGGTAB', s2 = 'GXTXAYB'" in {
+    val s1 = "AGGTAB"
+    val s2 = "GXTXAYB"
+    val expected = "GTAB"
+    val result = seq.commonStringSequenceForAllSubsets(new SequenceMap(s1 = s1, s2 = s2))
     result shouldBe expected
   }
 }
