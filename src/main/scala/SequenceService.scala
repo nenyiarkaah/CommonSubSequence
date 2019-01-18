@@ -17,7 +17,7 @@ class SequenceService {
 
     isCharInSequence(head, s2) match {
       case false => val index = 0
-        new SequenceMap(Seq(), tail, s2.substring(index))
+        new SequenceMap(seq, tail, s2.substring(index))
       case true => val index = indexOfCharInSequence(head, s2) + 1
         val newSeq: Seq[String] = seq :+ head
         new SequenceMap(newSeq, tail, s2.substring(index))

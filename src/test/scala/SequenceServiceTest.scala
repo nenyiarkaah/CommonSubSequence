@@ -56,10 +56,17 @@ class SequenceServiceTest extends  FlatSpec with BeforeAndAfter with MockFactory
     result shouldEqual expected
   }
   it should "return a 'AB' for s1 = 'QAB', s2 = 'BACBAD'" in {
-    val char = "QAB"
-    val stringSequence = "BACBAD"
+    val s1 = "QAB"
+    val s2 = "BACBAD"
     val expected = "AB"
-    val result = seq.commonStringSequence(new SequenceMap(s1 = char, s2 = stringSequence))
+    val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
+    result shouldBe expected
+  }
+  it should "return a 'ABAD' for s1 = 'ABAZDC', s2 = 'BACBAD'" in {
+    val s1 = "ABAZDC"
+    val s2 = "BACBAD"
+    val expected = "ABAD"
+    val result = seq.commonStringSequence(new SequenceMap(s1 = s1, s2 = s2))
     result shouldBe expected
   }
 }
