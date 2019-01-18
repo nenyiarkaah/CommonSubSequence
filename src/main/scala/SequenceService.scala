@@ -1,14 +1,27 @@
 class SequenceService {
 
-  def commonSequence(s1: String, s2: String) = {
+
+  //next extend functionality to handle two characters in s1 string
+  def commonStringSequence(sequenceMap: SequenceMap): String = {
+      sequenceMap.s1.isEmpty match {
+      case true => sequenceMap.seq.mkString("")
+      case false => val seqMap = commonCharSequence(sequenceMap.s1, sequenceMap.s2, sequenceMap.seq)
+        commonStringSequence(seqMap)
+    }
+  }
+
+
+  def commonCharSequence(s1: String, s2: String, seq: Seq[String] = Seq()) = {
     val head = s1.head.toString
+    val tail = s1.tail
+
     isCharInSequence(head, s2) match {
       case false => val index = 0
-        new SequenceMap(Seq(), s1.tail, s2.substring(index))
+        new SequenceMap(Seq(), tail, s2.substring(index))
       case true => val index = indexOfCharInSequence(head, s2) + 1
-        new SequenceMap(Seq(head), s1.tail, s2.substring(index))
+        val newSeq: Seq[String] = seq :+ head
+        new SequenceMap(newSeq, tail, s2.substring(index))
     }
-
   }
 
 
